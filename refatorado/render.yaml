@@ -1,0 +1,39 @@
+# Render Blueprint — ApiPagamento
+# Documentação: https://docs.render.com/blueprint-spec
+
+databases:
+  - name: apipagamento-db
+    plan: free
+    databaseName: apipagamento
+
+services:
+  - type: web
+    runtime: docker
+    name: apipagamento-api
+
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+
+      # DATABASE_URL injetado automaticamente pelo Render
+      - key: DATABASE_URL
+        fromDatabase:
+          name: apipagamento-db
+          property: connectionString
+
+      # Definir no Dashboard do Render:
+      - key: MERCADOPAGO_ACCESS_TOKEN
+        sync: false
+      - key: MERCADOPAGO_WEBHOOK_SECRET
+        sync: false
+      - key: MERCADOPAGO_APP_BASE_URL
+        sync: false   # ex: https://seu-app.onrender.com (sem barra final)
+
+      - key: APP_CORS_ORIGINS
+        value: https://landing-pag-api-pagamentos.vercel.app
+      - key: APP_FRONTEND_URL
+        value: https://landing-pag-api-pagamentos.vercel.app
+
+    # Health check real via Spring Boot Actuator
+    # Verifica banco, disco e estado geral da aplicação
+    healthCheckPath: /actuator/health
