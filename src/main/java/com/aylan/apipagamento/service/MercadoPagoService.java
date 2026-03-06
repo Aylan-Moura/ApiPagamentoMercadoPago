@@ -103,6 +103,7 @@ public class MercadoPagoService {
                 .unitPrice(productPrice)
                 .build();
 
+        // URLs de retorno: frontend (Vercel) ou fallback padrão
         String base = resolveBaseUrl();
         PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
                 .success(base + "/success")
@@ -112,9 +113,9 @@ public class MercadoPagoService {
 
         PreferenceRequest.PreferenceRequestBuilder requestBuilder = PreferenceRequest.builder()
                 .items(List.of(item))
-
+                .payer(PreferencePayerRequest.builder().email(email).build())
                 .backUrls(backUrls)
-
+                .autoReturn("approved")
                 .externalReference(externalReference);
 
         if (appBaseUrl != null && !appBaseUrl.isBlank()) {
