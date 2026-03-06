@@ -514,15 +514,15 @@ Usuário de teste para simular pagamentos em ambiente sandbox do Mercado Pago.
 
 > ⚠️ **Atenção:** estas credenciais são exclusivas para ambiente de testes. Nunca use em produção.
 
-### Dados do Comprador
+### Dados do Comprador (Buyer Test User)
 
-| Campo              | Valor             |
-|--------------------|-------------------|
-| **País**           | Brasil            |
-| **User ID**        | 3211823837        |
-| **Usuário**        | TESTUSER3289...   |
-| **Senha**          | zCB6KuXgUX        |
-| **Cód. verificação** | 823837          |
+| Campo                  | Valor                        |
+|------------------------|------------------------------|
+| **País**               | Brasil                       |
+| **User ID**            | 3211823837                   |
+| **Usuário de teste**   | TESTUSER3289101407470751788  |
+| **Senha**              | zCB6KuXgUX                   |
+| **Código de verificação** | 823837                    |
 
 ### Cartões de Teste
 
@@ -542,6 +542,21 @@ Para forçar um status específico, insira o código desejado no **nome do titul
 | `APRO`            | Pagamento aprovado  | 12345678909    |
 
 > Consulte a [documentação oficial do Mercado Pago](https://www.mercadopago.com.br/developers/pt/docs/your-integrations/test/cards) para a lista completa de códigos de simulação (`CONT`, `CALL`, `FUND`, `SECU`, `EXPI`, `FORM` etc.).
+
+### Passo a Passo — Realizar Pagamento de Teste
+
+Siga exatamente esta sequência para que o fluxo funcione corretamente no sandbox:
+
+1. Na tela de checkout do Mercado Pago, insira o e-mail **`test@gmail.com`** no campo solicitado
+2. Quando o MP exibir a sugestão de conta, **troque para** o usuário de teste:
+   - Usuário: `TESTUSER3289101407470751788`
+   - Senha: `zCB6KuXgUX`
+3. Clique em **"Outro meio de pagamento"** (não use o meio sugerido automaticamente)
+4. Selecione a **bandeira do cartão** desejada (ex: Mastercard)
+5. Preencha os dados do cartão conforme a tabela acima
+6. No campo **nome do titular**, digite `APRO` para simular pagamento aprovado
+7. Insira o **código de verificação** da conta de teste: `823837`
+8. Conclua o pagamento
 
 ---
 
