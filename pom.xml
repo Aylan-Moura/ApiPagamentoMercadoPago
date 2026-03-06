@@ -15,7 +15,7 @@
     <artifactId>apipagamento</artifactId>
     <version>1.0.0</version>
     <name>apipagamento</name>
-    <description>API de pagamentos integrada ao Mercado Pago</description>
+    <description>API de pagamentoss integrada ao Mercado Pago</description>
 
     <properties>
         <java.version>17</java.version>
